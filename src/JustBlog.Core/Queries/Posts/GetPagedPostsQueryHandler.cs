@@ -1,31 +1,42 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using JustBlog.Core.Infrastructure.Queries;
 using JustBlog.Core.Objects;
-
+using JustBlog.Core.Objects.Dto;
+using NHibernate;
+using NHibernate.Linq;
 namespace JustBlog.Core.Queries.Posts
 {
-    public class GetPagedPostsQueryHandler : IQueryHandler<GetPagedPostsQuery, IList<Post>>
+    /// <summary>
+    /// 
+    /// </summary>
+    public class GetPagedPostsQueryHandler : IQueryHandler<GetPagedPostsQuery, PagedResult<Post>>
     {
-        public IList<Post> Handle(GetPagedPostsQuery query)
+        private readonly ISession session;
+        public GetPagedPostsQueryHandler(ISession session)
         {
-            //var posts = _session.Query<Post>()
-            //                      .Where(p => p.Published)
-            //                      .OrderByDescending(p => p.PostedOn)
-            //                      .Skip(pageNo * pageSize)
-            //                      .Take(pageSize)
-            //                      .Fetch(p => p.Category)
-            //                      .ToList();
+            this.session = session;
+        }
+        public PagedResult<Post> Handle(GetPagedPostsQuery query)
+        {
+            var result = new PagedResult<Post>();
 
-            //var postIds = posts.Select(p => p.Id).ToList();
+            var posts = session.Query<Post>()
+                                  .Where(p => p.Published)
+                                  .OrderByDescending(p => p.PostedOn)
+                                  .Skip(query.PageNumber * query.PageSize)
+                                  .Take(query.PageSize)
+                                  .Fetch(p => p.Category)
+                                  .ToList();
 
-            //return _session.Query<Post>()
-            //      .Where(p => postIds.Contains(p.Id))
-            //      .OrderByDescending(p => p.PostedOn)
-            //      .FetchMany(p => p.Tags)
-            //      .ToList();
+            var postIds = posts.Select(p => p.Id).ToList();
 
-            return Enumerable.Empty<Post>().ToList();
+            result.Results = session.Query<Post>()
+                              .Where(p => postIds.Contains(p.Id))
+                              .OrderByDescending(p => p.PostedOn)
+                              .FetchMany(p => p.Tags)
+                              .ToList();
+            return result;
+
         }
     }
 }
