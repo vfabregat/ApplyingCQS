@@ -53,7 +53,8 @@ namespace JustBlog.Controllers
         /// <returns></returns>
         public ViewResult Post(int year, int month, string title)
         {
-            var post = _blogRepository.Post(year, month, title);
+            var post = queryProcessor.Execute(new GetPostByDateQuery(year, month, title));
+            //var post = _blogRepository.Post(year, month, title);
 
             if (post == null)
                 throw new HttpException(404, "Post not found");
@@ -72,7 +73,9 @@ namespace JustBlog.Controllers
         /// <returns></returns>
         public ViewResult Category(string category, int p = 1)
         {
-            var viewModel = new ListViewModel(_blogRepository, category, "Category", p);
+            var posts = queryProcessor.Execute(new GetPostsForCategoryQuery(category, p - 1, 10));
+
+            var viewModel = new ListViewModel(posts.Results, posts.TotalResults);
 
             if (viewModel.Category == null)
                 throw new HttpException(404, "Category not found");

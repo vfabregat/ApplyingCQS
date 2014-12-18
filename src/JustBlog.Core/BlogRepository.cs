@@ -395,12 +395,6 @@ namespace JustBlog.Core
         /// <returns></returns>
         public Post Post(int year, int month, string titleSlug)
         {
-            /*return _session.Query<Post>()
-                           .Where(p => p.PostedOn.Year == year && p.PostedOn.Month == month && p.UrlSlug.Equals(titleSlug))
-                           .Fetch(p => p.Category)
-                           .FetchMany(p => p.Tags)
-                           .FirstOrDefault();*/
-
             var query = _session.Query<Post>()
                            .Where(p => p.PostedOn.Year == year && p.PostedOn.Month == month && p.UrlSlug.Equals(titleSlug))
                            .Fetch(p => p.Category);

@@ -83,6 +83,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\Posts\GetPagedPostsQuery.cs" />
     <Compile Include="Queries\Posts\GetPagedPostsQueryHandler.cs" />
+    <Compile Include="Queries\Posts\GetPostByDateQuery.cs" />
+    <Compile Include="Queries\Posts\GetPostByDateQueryHandler.cs" />
+    <Compile Include="Queries\Posts\GetPostsForCategoryQuery.cs" />
+    <Compile Include="Queries\Posts\GetPostsForCategoryQueryHandler.cs" />
     <Compile Include="RepositoryModule.cs" />
   </ItemGroup>
   <ItemGroup>

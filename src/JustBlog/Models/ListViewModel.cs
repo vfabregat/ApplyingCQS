@@ -19,11 +19,11 @@ namespace JustBlog.Models
             this.Posts = posts;
             this.TotalPosts = totalPosts;
         }
-        public ListViewModel(IBlogRepository blogRepository, int p)
-        {
-            Posts = blogRepository.Posts(p - 1, 10);
-            TotalPosts = blogRepository.TotalPosts();
-        }
+        //public ListViewModel(IBlogRepository blogRepository, int p)
+        //{
+        //    Posts = blogRepository.Posts(p - 1, 10);
+        //    TotalPosts = blogRepository.TotalPosts();
+        //}
 
         public ListViewModel(IBlogRepository blogRepository, string text, string type, int p)
         {
