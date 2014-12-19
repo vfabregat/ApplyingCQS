@@ -3,7 +3,10 @@
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using JustBlog.Core.Infrastructure;
+using JustBlog.Core.Infrastructure.Queries;
 using JustBlog.Core.Objects;
+using JustBlog.Core.Objects.Dto;
+using JustBlog.Core.Queries.Posts;
 using NHibernate;
 using NHibernate.Cache;
 using Ninject;
@@ -36,7 +39,13 @@ namespace JustBlog.Core
               .ToMethod((ctx) => ctx.Kernel.Get<ISessionFactory>().OpenSession())
               .InRequestScope();
 
-            Bind<IQueryProcessor, DynamicQueryProcessor>();
+            Bind<IQueryProcessor>().To<DynamicQueryProcessor>();
+            Bind<IQueryHandler<GetPagedPostsQuery, PagedResult<Post>>>().To<GetPagedPostsQueryHandler>();
+            Bind<IQueryHandler<GetPostByDateQuery, Post>>().To<GetPostByDateQueryHandler>();
+            Bind<IQueryHandler<GetPostsForCategoryQuery, PagedResult<Post>>>().To<GetPostsForCategoryQueryHandler>();
+            Bind<IQueryHandler<GetPostsForSearchQuery, PagedResult<Post>>>().To<GetPostsForSearchQueryHandler>();
+            Bind<IQueryHandler<GetPostsForTagQuery, PagedResult<Post>>>().To<GetPostsForTagQueryHandler>();
+
         }
     }
 }

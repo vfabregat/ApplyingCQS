@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using JustBlog.Core.Infrastructure.Data;
 using JustBlog.Core.Infrastructure.Queries;
 using JustBlog.Core.Objects;
 using JustBlog.Core.Objects.Dto;
@@ -12,6 +13,11 @@ namespace JustBlog.Core.Queries.Posts
     public class GetPagedPostsQueryHandler : IQueryHandler<GetPagedPostsQuery, PagedResult<Post>>
     {
         private readonly ISession session;
+        private readonly IDbContext dbContext;
+        public GetPagedPostsQueryHandler(IDbContext dbContext)
+        {
+            this.dbContext = dbContext;
+        }
         public GetPagedPostsQueryHandler(ISession session)
         {
             this.session = session;
@@ -22,11 +28,7 @@ namespace JustBlog.Core.Queries.Posts
 
             var posts = session.Query<Post>()
                                   .Where(p => p.Published)
-                                  .OrderByDescending(p => p.PostedOn)
-                                  .Skip(query.PageNumber * query.PageSize)
-                                  .Take(query.PageSize)
-                                  .Fetch(p => p.Category)
-                                  .ToList();
+                                  .PagedToList(query.PageNumber, query.PageSize); ;
 
             var postIds = posts.Select(p => p.Id).ToList();
 

@@ -11,7 +11,7 @@ namespace JustBlog.Core.Queries.Posts
         public GetPagedPostsQuery(int pageNumber, int pageSize)
         {
             this.PageNumber = pageNumber;
-            this.PageSize = PageSize;
+            this.PageSize = pageSize;
         }
     }
 }

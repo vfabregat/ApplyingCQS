@@ -17,7 +17,7 @@ namespace JustBlog.Core.Infrastructure
             this.container = container;
         }
 
-        [DebuggerStepThrough]
+        //[DebuggerStepThrough]
         public TResult Execute<TResult>(IQuery<TResult> query)
         {
             var handlerType = typeof(IQueryHandler<,>).MakeGenericType(query.GetType(), typeof(TResult));

@@ -39,7 +39,6 @@ namespace JustBlog.Controllers
         {
             var pagedPosts = queryProcessor.Execute(new GetPagedPostsQuery(p - 1, 10));
             var viewModel = new ListViewModel(pagedPosts.Results, pagedPosts.TotalResults);
-            //var viewModel = new ListViewModel(_blogRepository, p);
             ViewBag.Title = "Latest Posts";
             return View("List", viewModel);
         }
@@ -54,7 +53,6 @@ namespace JustBlog.Controllers
         public ViewResult Post(int year, int month, string title)
         {
             var post = queryProcessor.Execute(new GetPostByDateQuery(year, month, title));
-            //var post = _blogRepository.Post(year, month, title);
 
             if (post == null)
                 throw new HttpException(404, "Post not found");
@@ -92,7 +90,9 @@ namespace JustBlog.Controllers
         /// <returns></returns>
         public ViewResult Tag(string tag, int p = 1)
         {
-            var viewModel = new ListViewModel(_blogRepository, tag, "Tag", p);
+            var posts = queryProcessor.Execute(new GetPostsForTagQuery(tag, p - 1, 10));
+
+            var viewModel = new ListViewModel(posts.Results, posts.TotalResults);
 
             if (viewModel.Tag == null)
                 throw new HttpException(404, "Tag not found");
@@ -111,7 +111,9 @@ namespace JustBlog.Controllers
         {
             ViewBag.Title = String.Format(@"Lists of posts found for search text ""{0}""", s);
 
-            var viewModel = new ListViewModel(_blogRepository, s, "Search", p);
+            var posts = queryProcessor.Execute(new GetPostsForSearchQuery(s, p - 1, 10));
+
+            var viewModel = new ListViewModel(posts.Results, posts.TotalResults);
             return View("List", viewModel);
         }
 
