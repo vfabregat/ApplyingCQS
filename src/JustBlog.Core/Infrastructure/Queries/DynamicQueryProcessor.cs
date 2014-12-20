@@ -1,5 +1,4 @@
 ﻿
-using System.Diagnostics;
 using JustBlog.Core.Infrastructure.Queries;
 using Ninject;
 

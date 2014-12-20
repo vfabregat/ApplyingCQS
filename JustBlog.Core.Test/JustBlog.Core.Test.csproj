@@ -69,8 +69,10 @@
   </Choose>
   <ItemGroup>
     <Compile Include="InMemoryDatabaseTest.cs" />
+    <Compile Include="Queries\NHibernateFetchMock.cs" />
     <Compile Include="Queries\Posts\GetPagedPostsQueryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queries\QueryableList.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

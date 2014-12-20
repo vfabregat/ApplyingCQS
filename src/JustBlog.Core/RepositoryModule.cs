@@ -2,6 +2,8 @@
 #region Usings
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
+using JustBlog.Core.Infrastructure;
+using JustBlog.Core.Infrastructure.Data;
 using JustBlog.Core.Infrastructure.Queries;
 using JustBlog.Core.Objects;
 using NHibernate;
@@ -35,6 +37,9 @@ namespace JustBlog.Core
             Bind<ISession>()
               .ToMethod((ctx) => ctx.Kernel.Get<ISessionFactory>().OpenSession())
               .InRequestScope();
+
+            Bind<IDbContext>().To<DbContext>();
+            Bind<IQueryProcessor>().To<DynamicQueryProcessor>();
 
             Kernel.Bind(c => c.FromThisAssembly()
                         .SelectAllClasses()

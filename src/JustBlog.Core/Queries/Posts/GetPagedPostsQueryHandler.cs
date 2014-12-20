@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using JustBlog.Core.Infrastructure.Data;
 using JustBlog.Core.Infrastructure.Queries;
 using JustBlog.Core.Objects;
 using JustBlog.Core.Objects.Dto;
@@ -13,11 +12,11 @@ namespace JustBlog.Core.Queries.Posts
     public class GetPagedPostsQueryHandler : IQueryHandler<GetPagedPostsQuery, PagedResult<Post>>
     {
         private readonly ISession session;
-        private readonly IDbContext dbContext;
-        public GetPagedPostsQueryHandler(IDbContext dbContext)
-        {
-            this.dbContext = dbContext;
-        }
+        //private readonly IDbContext session;
+        //public GetPagedPostsQueryHandler(IDbContext session)
+        //{
+        //    this.session = session;
+        //}
         public GetPagedPostsQueryHandler(ISession session)
         {
             this.session = session;
