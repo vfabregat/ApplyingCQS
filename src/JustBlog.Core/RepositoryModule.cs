@@ -28,7 +28,6 @@ namespace JustBlog.Core
               .Database(connectionString)
               .Cache(c => c.UseQueryCache().ProviderClass<HashtableCacheProvider>())
               .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Post>())
-                  //.ExposeConfiguration(cfg => new SchemaExport(cfg).Execute(true, true, false))
               .BuildConfiguration()
               .BuildSessionFactory())
               .InSingletonScope();
@@ -36,13 +35,6 @@ namespace JustBlog.Core
             Bind<ISession>()
               .ToMethod((ctx) => ctx.Kernel.Get<ISessionFactory>().OpenSession())
               .InRequestScope();
-
-            //Bind<IQueryProcessor>().To<DynamicQueryProcessor>();
-            //Bind<IQueryHandler<GetPagedPostsQuery, PagedResult<Post>>>().To<GetPagedPostsQueryHandler>();
-            //Bind<IQueryHandler<GetPostByDateQuery, Post>>().To<GetPostByDateQueryHandler>();
-            //Bind<IQueryHandler<GetPostsForCategoryQuery, PagedResult<Post>>>().To<GetPostsForCategoryQueryHandler>();
-            //Bind<IQueryHandler<GetPostsForSearchQuery, PagedResult<Post>>>().To<GetPostsForSearchQueryHandler>();
-            //Bind<IQueryHandler<GetPostsForTagQuery, PagedResult<Post>>>().To<GetPostsForTagQueryHandler>();
 
             Kernel.Bind(c => c.FromThisAssembly()
                         .SelectAllClasses()
