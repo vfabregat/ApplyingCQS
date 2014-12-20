@@ -5,5 +5,7 @@ namespace JustBlog.Core.Infrastructure
     public interface IQueryProcessor
     {
         TResult Execute<TResult>(IQuery<TResult> query);
+
+        TResult Execute<TQuery, TResult>();
     }
 }

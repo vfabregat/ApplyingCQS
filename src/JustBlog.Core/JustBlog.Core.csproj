@@ -82,6 +82,8 @@
     <Compile Include="Objects\Post.cs" />
     <Compile Include="Objects\Tag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queries\Categories\GetAllCategoriesQuery.cs" />
+    <Compile Include="Queries\Categories\GetAllCategoriesQueryHandler.cs" />
     <Compile Include="Queries\Posts\GetPagedPostsQuery.cs" />
     <Compile Include="Queries\Posts\GetPagedPostsQueryHandler.cs" />
     <Compile Include="Queries\Posts\GetPostByDateQuery.cs" />
@@ -92,6 +94,8 @@
     <Compile Include="Queries\Posts\GetPostsForSearchQueryHandler.cs" />
     <Compile Include="Queries\Posts\GetPostsForTagQueryHandler.cs" />
     <Compile Include="Queries\Posts\GetPostsForCategoryQueryHandler.cs" />
+    <Compile Include="Queries\Tags\GetAllTagsQuery.cs" />
+    <Compile Include="Queries\Tags\GetAllTagsQueryHandler.cs" />
     <Compile Include="RepositoryModule.cs" />
   </ItemGroup>
   <ItemGroup>

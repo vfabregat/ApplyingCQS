@@ -1,10 +1,10 @@
 ﻿using System;
-using JustBlog.Core.Infrastructure.Data;
 using JustBlog.Core.Objects;
 using JustBlog.Core.Queries.Posts;
 using JustBlog.Core.Test.Queries;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using NHibernate;
 
 namespace JustBlog.Core.Test
 {
@@ -48,9 +48,9 @@ namespace JustBlog.Core.Test
                     UrlSlug = "Programming"
                 }
             });
-            var dataContext = new Mock<IDbContext>();
-            dataContext.Setup(d => d.Query<Post>())
-                .Returns(list);
+            var dataContext = new Mock<ISession>();
+            //dataContext.Setup(d => d.Query<Post>())
+            //    .Returns(list);
 
             var queryHandler = new GetPagedPostsQueryHandler(dataContext.Object);
 

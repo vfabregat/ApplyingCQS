@@ -1,5 +1,6 @@
 ﻿#region Usings
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Net.Mail;
@@ -10,7 +11,9 @@ using System.Web.Mvc;
 using JustBlog.Core;
 using JustBlog.Core.Infrastructure;
 using JustBlog.Core.Objects;
+using JustBlog.Core.Queries.Categories;
 using JustBlog.Core.Queries.Posts;
+using JustBlog.Core.Queries.Tags;
 using JustBlog.Models;
 #endregion
 
@@ -124,7 +127,10 @@ namespace JustBlog.Controllers
         [ChildActionOnly]
         public PartialViewResult Sidebars()
         {
-            var widgetViewModel = new WidgetViewModel(_blogRepository);
+            var categories = queryProcessor.Execute<GetAllCategoriesQuery, IList<Category>>();
+            var tags = queryProcessor.Execute<GetAllTagsQuery, IList<Tag>>();
+            var pagedPosts = queryProcessor.Execute(new GetPagedPostsQuery(0, 10));
+            var widgetViewModel = new WidgetViewModel(categories, tags, pagedPosts.Results);
             return PartialView("_Sidebars", widgetViewModel);
         }
 
