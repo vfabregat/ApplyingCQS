@@ -3,6 +3,7 @@
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using JustBlog.Core.Infrastructure;
+using JustBlog.Core.Infrastructure.Commands;
 using JustBlog.Core.Infrastructure.Data;
 using JustBlog.Core.Infrastructure.Queries;
 using JustBlog.Core.Objects;
@@ -41,11 +42,18 @@ namespace JustBlog.Core
             Bind<IDbContext>().To<DbContext>();
             Bind<IQueryProcessor>().To<DynamicQueryProcessor>();
 
+            // Register IQueryHandler
             Kernel.Bind(c => c.FromThisAssembly()
                         .SelectAllClasses()
                         .InheritedFrom(typeof(IQueryHandler<,>))
                         .BindSingleInterface());
 
+
+            // Register ICommandHandler
+            Kernel.Bind(c => c.FromThisAssembly()
+                        .SelectAllClasses()
+                        .InheritedFrom(typeof(ICommandHandler<>))
+                        .BindSingleInterface());
         }
     }
 }

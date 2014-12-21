@@ -168,7 +168,7 @@ namespace JustBlog.Controllers
                         message.Subject = contact.Subject;
                         message.SubjectEncoding = Encoding.UTF8;
 
-                        message.ReplyTo = new MailAddress(contact.Email);
+                        message.ReplyToList.Add(new MailAddress(contact.Email));
 
                         client.Send(message);
                     }

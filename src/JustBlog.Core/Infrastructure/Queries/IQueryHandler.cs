@@ -1,8 +1,7 @@
 ﻿
 namespace JustBlog.Core.Infrastructure.Queries
 {
-    public interface IQueryHandler<TQuery, TResult> where TQuery : IQuery<TResult>
+    public interface IQueryHandler
     {
-        TResult Handle(TQuery query);
     }
 }

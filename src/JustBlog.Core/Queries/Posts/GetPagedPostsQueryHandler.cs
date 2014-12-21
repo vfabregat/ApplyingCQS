@@ -31,6 +31,7 @@ namespace JustBlog.Core.Queries.Posts
 
             var postIds = posts.Select(p => p.Id).ToList();
 
+            result.TotalResults = session.Query<Post>().Where(p => query.CountCheckIsPublished || p.Published == true).Count();
             result.Results = session.Query<Post>()
                               .Where(p => postIds.Contains(p.Id))
                               .OrderByDescending(p => p.PostedOn)

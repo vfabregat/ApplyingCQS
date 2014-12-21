@@ -65,11 +65,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BlogRepository.cs" />
+    <Compile Include="Commands\Categories\AddOrEditCategoryCommand.cs" />
+    <Compile Include="Commands\Categories\AddOrEditCategoryCommandHandler.cs" />
+    <Compile Include="Commands\Categories\DeleteCategoryCommand.cs" />
+    <Compile Include="Commands\Categories\DeleteCategoryCommandHandler.cs" />
+    <Compile Include="Commands\Posts\AddOrEditPostCommandHandler.cs" />
+    <Compile Include="Commands\Posts\AddOrEditPostCommand.cs" />
+    <Compile Include="Commands\Posts\DeletePostCommand.cs" />
+    <Compile Include="Commands\Posts\DeletePostCommandHandler.cs" />
+    <Compile Include="Commands\Tags\AddOrEditTagCommand.cs" />
+    <Compile Include="Commands\Tags\AddOrEditTagCommandHandler.cs" />
+    <Compile Include="Commands\Tags\DeleteTagCommand.cs" />
+    <Compile Include="Commands\Tags\DeleteTagCommandHandler.cs" />
     <Compile Include="IBlogRepository.cs" />
+    <Compile Include="Infrastructure\Commands\ICommandHandler.cs" />
     <Compile Include="Infrastructure\DbContext.cs" />
     <Compile Include="Infrastructure\IDbContext.cs" />
     <Compile Include="Infrastructure\Queries\DynamicQueryProcessor.cs" />
     <Compile Include="Infrastructure\Queries\IQuery.cs" />
+    <Compile Include="Infrastructure\Queries\IQueryHandler[TQuery,TResult].cs" />
     <Compile Include="Infrastructure\Queries\IQueryHandler.cs" />
     <Compile Include="Infrastructure\Queries\IQueryProcessor.cs" />
     <Compile Include="IQueryableExtensions.cs" />
@@ -87,7 +101,9 @@
     <Compile Include="Queries\Posts\GetPagedPostsQuery.cs" />
     <Compile Include="Queries\Posts\GetPagedPostsQueryHandler.cs" />
     <Compile Include="Queries\Posts\GetPostByDateQuery.cs" />
+    <Compile Include="Queries\Posts\GetPostByIdQueryHandler.cs" />
     <Compile Include="Queries\Posts\GetPostByDateQueryHandler.cs" />
+    <Compile Include="Queries\Posts\GetPostByIdQuery.cs" />
     <Compile Include="Queries\Posts\GetPostsForSearchQuery.cs" />
     <Compile Include="Queries\Posts\GetPostsForTagQuery.cs" />
     <Compile Include="Queries\Posts\GetPostsForCategoryQuery.cs" />
