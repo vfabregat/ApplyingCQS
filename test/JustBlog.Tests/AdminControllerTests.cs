@@ -20,7 +20,7 @@ namespace JustBlog.Tests
         public void SetUp()
         {
             _authProvider = MockRepository.GenerateMock<IAuthProvider>();
-            _adminController = new AdminController(_authProvider, null, null);
+            _adminController = new AdminController(_authProvider, null, null, null, null, null, null, null, null);
 
             var httpContextMock = MockRepository.GenerateMock<HttpContextBase>();
             _adminController.Url = new UrlHelper(new RequestContext(httpContextMock, new RouteData()));
