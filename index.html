@@ -33,7 +33,8 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
             <div class="content container 75%">
                 <h1>Are the repositories the only way?</h1>
                 <footer>
-                    <a href="#intro2" class="button style2 down">More</a>
+                    <a href="#intro2" class="button style2 down" data-notes="The repository pattern could break the SOLID principles
+">More</a>
                 </footer>
             </div>
         </section>
@@ -43,7 +44,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
             <div class="content container 75%">
                 <h1>What's your problem with the repository pattern?</h1>
                 <footer>
-                    <a href="#one" class="button style2 down" data-notes="The repository class broke the single responsability pattern">More</a>
+                    <a href="#one" class="button style2 down" data-notes="In this example we can see that the BlogRepository do a lot of things. A lot reasons to change">More</a>
                 </footer>
             </div>
         </section>
@@ -73,7 +74,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                 <span>|Edit</span>
                 <span>|Delete</span>
             </div>
-            <a href="#two" class="button style2 down anchored">Next</a>
+            <a href="#two" class="button style2 down anchored" data-notes="What's happens if we want to create a new query to get data from another source (ex. NoSql)">Next</a>
         </section>
 
         <!-- Two -->
@@ -84,7 +85,10 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                 </header>
                 <p>It's broke the interface segregation principle.</p>
             </div>
-            <a href="#cqs" class="button style2 down anchored">Next</a>
+            <a href="#cqs" class="button style2 down anchored" data-notes="* In my opinion the more natural way in a web application. 
+* The commands cannot change the state of the system and the queries only return data, don’t change the state of the system. 
+* Allow to test better, we only mock configure the minimum to test a logic (A command or query). 
+* In the other hand, we can say that applying CQS we have to create a lot of files.">Next</a>
         </section>
         <section id="cqs" class="main style2 fullscreen">
             <div class="content box style2">
